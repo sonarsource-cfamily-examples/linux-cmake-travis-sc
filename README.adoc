@@ -1,3 +1,34 @@
+= C++ example project scanned on SonarCloud using Travis CI
+// URIs:
+:uri-qg-status: https://sonarcloud.io/dashboard?id=sc-sq-c-family-examples_linux-cmake-travis-sc
+:img-qg-status: https://sonarcloud.io/api/project_badges/measure?project=sc-sq-c-family-examples_linux-cmake-travis-sc&metric=alert_status
+:uri-build-status: https://travis-ci.com/sc-sq-c-family-examples/linux-cmake-travis-sc
+:img-build-status: https://travis-ci.com/sc-sq-c-family-examples/linux-cmake-travis-sc.svg?branch=main
+
+image:{img-build-status}[Build Status, link={uri-build-status}]
+image:{img-qg-status}[Quality Gate Status,link={uri-qg-status}]
+
+*This project is analysed on https://sonarcloud.io/dashboard?id=sc-sq-c-family-examples_linux-cmake-travis-sc[SonarCloud]!*
+
+It is very easy to analyze a C/C++/Objective-C project with SonarCloud https://docs.travis-ci.com/user/sonarcloud/[on Travis CI]:
+
+. Create a `sonar-project.properties` file to store your configuration
+. Store the value of your token as SONAR_TOKEN environment variable in your Repository Settings
+. In your `.travis.yml` file:
+.. Activate the https://docs.travis-ci.com/user/sonarcloud/[Travis Add-on] and add it to your `.travis.yml` file:
+* Specify your GitHub `organization`
+.. Wrap your compilation with the https://sonarcloud.io/documentation/analysis/languages/cfamily/#analysis-steps-using-build-wrapper[Build Wrapper]
+.. Run `sonar-scanner` later on
+
+
+You can take a look at the link:sonar-project.properties[sonar-project.properties] and link:.travis.yml[.travis.yml] to see it in practice.
+
+= Documentation
+
+- https://sonarcloud.io/documentation/analysis/languages/cfamily/[Documentation of the C/C++/Objective-C plugin and its Build Wrapper]
+- https://docs.travis-ci.com/user/sonarcloud/[Documentation of the SonarCloud Travis Add-on]
+- https://sonarcloud.io/documentation/getting-started/github/[Documentation of using SonarCloud with GitHub]
+
 = Linux\CMake
 
 A build of the https://github.com/sc-sq-c-family-examples/code[code repository] on a Linux platform using CMake build system.
