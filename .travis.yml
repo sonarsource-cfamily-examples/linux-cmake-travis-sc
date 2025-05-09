@@ -1,5 +1,5 @@
 language: cpp
-dist: bionic
+dist: jammy
 os: linux
 
 sudo: false
@@ -16,19 +16,13 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - g++-9
+      - cmake
 
 env:
   - CXX=g++-9 BUILD_WRAPPER_OUT_DIR=build_wrapper_output_folder
 
-before_install:
-  - wget -O cmake.sh https://github.com/Kitware/CMake/releases/download/v3.20.5/cmake-3.20.5-linux-x86_64.sh
-  - sudo sh cmake.sh --skip-license --exclude-subdir --prefix=/usr/local
-  - export PATH=/usr/local/bin:$PATH
-  - cmake --version
-
 script:
   # Prepare the build system
-  - NUMBER_OF_PROCESSORS=$(nproc --all)
   - mkdir build
   - cmake -S . -B build
   # Wraps the compilation with the Build Wrapper to generate configuration (used
@@ -36,7 +30,7 @@ script:
   - build-wrapper-linux-x86-64 --out-dir "$BUILD_WRAPPER_OUT_DIR" cmake --build build/ --config Release
   # And finally run the SonarQube analysis - read the "sonar-project.properties"
   # file to see the specific configuration
-  - sonar-scanner --define sonar.cfamily.compile-commands="$BUILD_WRAPPER_OUT_DIR/compile_commands.json"
+  - sonar-scanner
 
 cache:
   directories:
