@@ -24,7 +24,7 @@ script:
   # Prepare the build 
   - java --version
   - update-java-alternatives --list
-  - update-java-alternatives --set java-1.17.0-openjdk-amd64
+  - sudo update-java-alternatives --set java-1.17.0-openjdk-amd64
   - java --version
   - export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
   - export PATH=$JAVA_HOME/bin:$PATH
