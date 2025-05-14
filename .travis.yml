@@ -22,6 +22,8 @@ env:
 script:
   # Prepare the build system
   - java --version
+  - export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+  - export PATH=$JAVA_HOME/bin:$PATH
   - mkdir build
   - cmake -S . -B build
   # Wraps the compilation with the Build Wrapper to generate configuration (used
