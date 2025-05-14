@@ -1,6 +1,4 @@
-language:
-  - cpp
-  - java
+language: cpp
 dist: jammy
 os: linux
 
@@ -16,14 +14,14 @@ addons:
     packages:
       - g++-9
       - cmake
+      - openjdk-17-jre
 
 env:
   - CXX=g++-9 BUILD_WRAPPER_OUT_DIR=build_wrapper_output_folder
 
 script:
   # Prepare the build system
-  - java -version
-  - 
+  - java --version
   - mkdir build
   - cmake -S . -B build
   # Wraps the compilation with the Build Wrapper to generate configuration (used
