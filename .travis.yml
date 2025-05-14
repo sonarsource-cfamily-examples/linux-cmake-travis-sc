@@ -3,7 +3,6 @@ dist: jammy
 os: linux
 
 compiler: gcc
-jdk: openjdk17
 
 addons:
   sonarcloud:
@@ -14,21 +13,16 @@ addons:
     packages:
       - g++-9
       - cmake
-      - java-common
       - openjdk-17-jre
 
 env:
-  - CXX=g++-9 BUILD_WRAPPER_OUT_DIR=build_wrapper_output_folder
+  - JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+  - PATH=$JAVA_HOME/bin:$PATH
+  - CXX=g++-9
+  - BUILD_WRAPPER_OUT_DIR=build_wrapper_output_folder
 
 script:
-  # Prepare the build 
-  - java --version
-  - update-java-alternatives --list
-  - sudo update-java-alternatives --set java-1.17.0-openjdk-amd64
-  - java --version
-  - export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
-  - export PATH=$JAVA_HOME/bin:$PATH
-  - java --version
+  # Prepare the build
   - mkdir build
   - cmake -S . -B build
   # Wraps the compilation with the Build Wrapper to generate configuration (used
